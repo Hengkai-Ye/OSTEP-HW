@@ -6,6 +6,7 @@ void *mythread(void *arg) {
     printf("%s\n", arg);
     return NULL;
 }
+// mythread = &mythread = *mythread
 
 int main(int argc, char *argv[]){
     if (argc != 1){
