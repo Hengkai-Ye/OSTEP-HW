@@ -25,8 +25,8 @@ void *mythread(void *arg){
 
 int main(int argc, char *argv[]){
     pthread_t p;
-    myarg arg = {10, 20};
-    myret *rvals;
+    myarg arg = {10, 20}; //线程函数的输入参数 本例中其实没有被用到
+    myret *rvals; //线程的返回值，一个指向myret结构的指针
     pthread_create(&p, NULL, mythread, &arg);
     pthread_join(p, (void **) &rvals);
     printf("two returns: %d, %d\n", rvals->x, rvals->y);

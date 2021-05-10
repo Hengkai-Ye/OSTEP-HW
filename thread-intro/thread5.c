@@ -3,7 +3,7 @@
 #include<unistd.h>
 #include<stdio.h>
 #include<stdlib.h>
- 
+// https://blog.csdn.net/lyx_323/article/details/82897192 介绍互斥锁的使用
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;/*初始化互斥锁*/
 pthread_cond_t  cond = PTHREAD_COND_INITIALIZER;//init cond
  

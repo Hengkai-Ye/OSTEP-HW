@@ -18,6 +18,6 @@ int main(int argc, char *argv[]){
     pthread_t p1;
     myarg arg = {10, 20};
     pthread_create(&p1, NULL, mythread, &arg);
-    pthread_join(p1, NULL);
+    pthread_join(p1, NULL); //p1为等待的线程，null为线程函数返回值类型
     return 0;
 }
