@@ -13,7 +13,9 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "error\n");
         exit(1);
     }
-
+    printf("%p\n", mythread);
+    printf("%p\n", &mythread);
+    printf("%p\n", *mythread);
     pthread_t p1, p2; //设置两个线程号
     printf("main begnin\n");
     pthread_create(&p1, NULL, mythread, "A");

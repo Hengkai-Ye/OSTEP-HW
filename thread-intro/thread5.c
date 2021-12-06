@@ -19,7 +19,7 @@ int main(void){
     pthread_create(&t_a,NULL,thread2,(void*)NULL);
     pthread_create(&t_b,NULL,thread1,(void*)NULL);//Create thread
     
-    printf("t_a:0x%x, t_b:0x%x:", t_a, t_b);
+    printf("t_a:0x%x, t_b:0x%x\n:", t_a, t_b);
     pthread_join(t_b,NULL);//wait a_b thread end
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&cond);
@@ -32,7 +32,7 @@ void *thread1(void *junk){
         printf("call thread1 \n");
         if(i%3 == 0)
         	{
-            pthread_cond_signal(&cond); //send sianal to t_b
+            pthread_cond_signal(&cond); //立即释放锁，send sianal to t_b
             printf("thread1:******i=%d\n", i);
         	}
         else
@@ -51,8 +51,8 @@ void *thread2(void*junk){
         pthread_mutex_lock(&mutex);
         printf("call thread2 \n");
         if(i%3 != 0)
-            pthread_cond_wait(&cond,&mutex); //wait
-         printf("thread2: %d\n",i);
+            pthread_cond_wait(&cond,&mutex); //wait 解锁并等待signal， 接收signal后上锁继续执行
+        printf("thread2: %d\n",i);
         pthread_mutex_unlock(&mutex);
  
 		printf("thread2: sleep i=%d\n", i);
